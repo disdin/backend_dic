@@ -18,5 +18,6 @@ var AllAnimals= new Schema({
     CriticalHealthAnimalsCount:Number,
 })
 module.exports = {
-    
+    animalSchema,
+    AllAnimals
 };
