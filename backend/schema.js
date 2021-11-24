@@ -28,17 +28,7 @@ var animalSchema = new Schema({
 });
 
 
-var AllAnimals = new Schema({  
-    TotalAnimals: Number,     
-    HealthyAnimalsCount: Number,
-    NormalHealthAnimalsCount: Number,
-    CriticalHealthAnimalsCount: Number,
-});
-
-
-
 module.exports = {
     animalSchema,
     userSchema,
-    AllAnimals
 };
