@@ -1,39 +1,38 @@
 var mongoose = require('mongoose'),
-Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    Userid : String,
-    Name : String,
-    Contact : Number,
-    Username : String,
-    Password : String,
-    AccessToken : String
+    Name: String,
+    Contact: Number,
+    Username: String,
+    Password: String,
+    AccessToken: String
 });
 
-var animalSchema= new Schema({
+var animalSchema = new Schema({
     animalID: String,
-    accessToken:String,
-    Icon:String,
-    Name:String,
-    HealthCondition:String,
-    Status:String,
-    Location:{
+    accessToken: String,
+    Icon: String,
+    Name: String,
+    HealthCondition: String,
+    Status: String,
+    Location: {
         Latitude: Number,
         Longitude: Number
-    }, 
-    OtherInformation:String,
-    FenceDetail:{
+    },
+    OtherInformation: String,
+    FenceDetail: {
         Center: Number,
         Radius: Number
     }
 });
 
 
-var AllAnimals= new Schema({  // I guess We don't need this.
-    TotalAnimals: Number,     //We can directly count using query
-    HealthyAnimalsCount:Number,
-    NormalHealthAnimalsCount:Number,
-    CriticalHealthAnimalsCount:Number,
+var AllAnimals = new Schema({  
+    TotalAnimals: Number,     
+    HealthyAnimalsCount: Number,
+    NormalHealthAnimalsCount: Number,
+    CriticalHealthAnimalsCount: Number,
 });
 
 
