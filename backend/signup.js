@@ -16,6 +16,9 @@ exports.signup = function (req, res) {
             //userid= first 4 char of name + last 4 digits of contact number
              var name = req.body.Name;
              var contact = req.body.Contact;
+             if(contact.length != 10){
+                 return res.send("<h1>Invaild Contact Number</h1><br>Contact number should be of 10 digits.")
+             }
              var assignedID = name.slice(0, 4) + contact.slice(6, 10);   
 
              var accessToken = issueToken(req, res);     
@@ -24,11 +27,13 @@ exports.signup = function (req, res) {
             const newUser = new User({
                 Userid: assignedID,
                 Name: req.body.Name,
-                Contact: req.body.ContactNumber,
+                Contact: contact,
                 Username: req.body.Username,
                 Password: req.body.Password,
                 AccessToken: accessToken
             });
+
+            console.log(newUser.Contact);
 
             const responseData = {
                 Userid: assignedID,

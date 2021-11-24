@@ -11,6 +11,7 @@ var userSchema = new Schema({
 });
 
 var animalSchema= new Schema({
+    animalID: String,
     accessToken:String,
     Icon:String,
     Name:String,
@@ -26,6 +27,8 @@ var animalSchema= new Schema({
         Radius: Number
     }
 });
+
+
 var AllAnimals= new Schema({  // I guess We don't need this.
     TotalAnimals: Number,     //We can directly count using query
     HealthyAnimalsCount:Number,
