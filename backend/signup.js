@@ -12,66 +12,69 @@ exports.signup = function (req, res) {
     User.findOne({ Username: req.body.Username }, function (err, foundUser) {
         if (!foundUser) {  //ensuring no duplicate entry or signup    
 
-            //creating userid
-            //userid= first 4 char of name + last 4 digits of contact number
-             var name = req.body.Name;
-             var contact = req.body.Contact;
-             if(contact.length != 10){
-                 return res.send("<h1>Invaild Contact Number</h1><br>Contact number should be of 10 digits.")
-             }
-             var assignedID = name.slice(0, 4) + contact.slice(6, 10);   
+            var name = req.body.Name;
+            var contact = req.body.Contact;
+            var userName = req.body.Username;
+            if (contact.length != 10) {
+                return res.status(401).send("<h1>Invaild Contact Number</h1><br>Contact number should be of 10 digits.");
+            }
+            var accessToken = issueToken(req, res);
 
-             var accessToken = issueToken(req, res);     
-   
             //creating new user document
             const newUser = new User({
-                Userid: assignedID,
-                Name: req.body.Name,
+                Name: name,
                 Contact: contact,
-                Username: req.body.Username,
+                Username: userName,
                 Password: req.body.Password,
                 AccessToken: accessToken
             });
 
-            console.log(newUser.Contact);
-
-            const responseData = {
-                Userid: assignedID,
-                Name: name,
-                Contact: contact,
-                Username: req.body.Username,
-                Accesstoken: accessToken 
-            };
-
+            var assignedID;
 
             newUser.save(function (errors) {   //saving user data to database
                 if (!errors) {
-
                     //code to send data on successful registration
-                    const jsonContent = JSON.stringify(responseData);
-                    res.end(jsonContent);
-                    
+                    User.findOne({ Username: req.body.Username }, function (err, foundUser) {
+                        if (foundUser) {
+                            assignedID = foundUser._id.toString();
+                            const responseData = {
+                                Userid: assignedID,
+                                Name: name,
+                                Contact: contact,
+                                Username: userName,
+                                Accesstoken: accessToken
+                            };
+
+                            const jsonContent = JSON.stringify(responseData);
+                            res.end(jsonContent);
+
+                        } else {
+                            res.status(404).send("User not found. Please sign in again.");
+                        }
+                    })
+
+
                 } else {
-                    res.send("<h2>Registration failed</h2>");
+                    res.status(401).send("<h2>Registration failed</h2>");
                 }
             });
         }
         else {
-            res.send("<h2>Already registered. Please login.</h2>");
+            res.status(200).send("<h2>Already registered. Please login.</h2>");
         }
     })
 
 }
 
-function issueToken(req, res){
-     
-     var assignedID;
+function issueToken(req, res) {
+
+    var assignedID;
 
     let payload = {
-        Userid : assignedID,
-        Name : req.body.Username,
-        Contact : req.body.ContactNumber,
-        Username : req.body.Username
+        Userid: assignedID,
+        Name: req.body.Username,
+        Contact: req.body.ContactNumber,
+        Username: req.body.Username
     };
 
     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
