@@ -28,18 +28,7 @@ var animalSchema= new Schema({
     }
 });
 
-
-var AllAnimals= new Schema({  // I guess We don't need this.
-    TotalAnimals: Number,     //We can directly count using query
-    HealthyAnimalsCount:Number,
-    NormalHealthAnimalsCount:Number,
-    CriticalHealthAnimalsCount:Number,
-});
-
-
-
 module.exports = {
     animalSchema,
     userSchema,
-    AllAnimals
 };
