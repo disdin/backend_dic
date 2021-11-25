@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+import mongoose from "mongoose";
+var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
     Name: String,
@@ -10,8 +10,6 @@ var userSchema = new Schema({
 });
 
 var animalSchema = new Schema({
-    animalID: String,
-    accessToken: String,
     Icon: String,
     Name: String,
     HealthCondition: String,
@@ -27,8 +25,7 @@ var animalSchema = new Schema({
     }
 });
 
-
-module.exports = {
+export default {
     animalSchema,
-    userSchema,
+    userSchema
 };

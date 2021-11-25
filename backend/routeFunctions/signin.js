@@ -1,18 +1,27 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
-const UserSchema = require("../schema").userSchema;
+import schema from "../schema.js";
 
-UserSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
+// schema.userschema.methods.matchPassword = async function (enteredPassword) {
+//   return await bcrypt.compare(enteredPassword, this.password);
+// };
 
-exports.signin = function (req, res) {
-  const { email, password } = req.body;
-  User.findOne({ email: email }, async (err, user) => {
+const User = mongoose.model("User", schema.userSchema);
+
+function signin (req, res) {
+  const { Username, Password } = req.body;
+  User.findOne({ Username: Username }, async (err, user) => {
     if (user) {
-      if (await user.matchPassword(password)) {
-        res.send({ message: "Login Successfull", user: {} });
+      if (Password===user.Password) {
+        res.send({ 
+          message: "Login Successfull",
+          Userid:user.Userid,
+          Name:user.Name,
+          Contact:user.Contact,
+          Username:user.Username,
+          AccessToken:user.AccessToken
+        });
       } else {
         res.send({ message: "Password didn't match" });
       }
@@ -21,3 +30,4 @@ exports.signin = function (req, res) {
     }
   });
 };
+export default signin;

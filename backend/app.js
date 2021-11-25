@@ -1,31 +1,37 @@
-require("dotenv").config(); //loads environment variables from .env file
-
 //modules
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import Connection from "./database/db.js";
+
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
 app.set("view engine", "ejs"); //ejs as templating engine
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
-const uri = process.env.uri;
 
-//connecting to database
-mongoose.connect(
-  uri,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("DB connected");
-  }
-);
+const port=8000;
 
-const { signup } = require("./routeFunctions/signup");
-const { signin } = require("./routeFunctions/signin");
+
+
+import totalAnimals from "./routeFunctions/totalAnimals.js"
+import  verify  from './middleware.js';
+import allAnimalDetails from "./routeFunctions/allAnimalsDetails.js";
+
+import  signup   from "./routeFunctions/signup.js";
+import  signin  from "./routeFunctions/signin.js";
 
 app.post("/signup", signup);
 app.post("/signin", signin);
+app.get("/totalAnimals",verify, totalAnimals);
+app.get("/allAnimalDetails",verify, allAnimalDetails);
 
-app.listen(3000, function () {
-  console.log(">> Server started successfully at port 3000");
+const username=process.env.DB_USERNAME;
+const password= process.env.DB_PASSWORD;
+Connection(username,password);
+
+app.listen(port,  ()=> {
+  console.log(`>> Server started successfully at port ${port}`);
 });
