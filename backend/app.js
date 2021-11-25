@@ -16,11 +16,13 @@ const {signup} = require("./routes/signup");
 const {signin} = require("./routes/signin");
 const {totalAnimals} = require("./routes/totalAnimals")
 const { verify } = require('./middleware');
+const {allAnimalDetails} = require("./routes/allAnimalsDetails");
 
 
 app.post("/signup", signup);
 app.post("/signin", signin);
 app.get("/totalAnimals",verify, totalAnimals);
+app.get("/allAnimalDetails",verify, allAnimalDetails);
 
 
 

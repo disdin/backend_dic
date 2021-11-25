@@ -10,7 +10,6 @@ var userSchema = new Schema({
 });
 
 var animalSchema = new Schema({
-    animalID: String,
     Icon: String,
     Name: String,
     HealthCondition: String,
