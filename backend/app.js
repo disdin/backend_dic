@@ -19,12 +19,17 @@ mongoose.connect(
     console.log("DB connected");
   }
 );
+const {totalAnimals} = require("./routeFunctions/totalAnimals")
+const { verify } = require('./middleware');
+const {allAnimalDetails} = require("./routeFunctions/allAnimalsDetails");
 
 const { signup } = require("./routeFunctions/signup");
 const { signin } = require("./routeFunctions/signin");
 
 app.post("/signup", signup);
 app.post("/signin", signin);
+app.get("/totalAnimals",verify, totalAnimals);
+app.get("/allAnimalDetails",verify, allAnimalDetails);
 
 app.listen(3000, function () {
   console.log(">> Server started successfully at port 3000");
