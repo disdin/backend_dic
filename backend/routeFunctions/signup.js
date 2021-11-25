@@ -1,11 +1,8 @@
-
 require('dotenv').config()
 const mongoose = require("mongoose");  //importing mongoose
 const jwt = require("jsonwebtoken");
 const schema = require('./schema');
 
-//connecting to database
-mongoose.connect("mongodb://localhost:27017/forestDB", { useNewUrlParser: true });
 const User = mongoose.model("User", schema.userSchema);
 
 exports.signup = function (req, res) {
