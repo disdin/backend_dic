@@ -1,4 +1,3 @@
-//modules
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -13,8 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
 
 const port=8000;
-
-
 
 import totalAnimals from "./routeFunctions/totalAnimals.js"
 import  verify  from './middleware.js';
