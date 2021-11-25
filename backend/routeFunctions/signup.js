@@ -1,7 +1,7 @@
 require('dotenv').config()
 const mongoose = require("mongoose");  //importing mongoose
 const jwt = require("jsonwebtoken");
-const schema = require('./schema');
+const schema = require('../schema');
 
 const User = mongoose.model("User", schema.userSchema);
 

@@ -10,8 +10,6 @@ var userSchema = new Schema({
 });
 
 var animalSchema = new Schema({
-    animalID: String,
-    accessToken: String,
     Icon: String,
     Name: String,
     HealthCondition: String,
@@ -30,5 +28,5 @@ var animalSchema = new Schema({
 
 module.exports = {
     animalSchema,
-    userSchema,
+    userSchema
 };
