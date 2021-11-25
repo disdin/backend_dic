@@ -14,10 +14,13 @@ app.use(express.static("public")); //static files in public directory
 
 const {signup} = require("./routes/signup");
 const {signin} = require("./routes/signin");
+const {totalAnimals} = require("./routes/totalAnimals")
+const { verify } = require('./middleware');
 
 
 app.post("/signup", signup);
 app.post("/signin", signin);
+app.get("/totalAnimals",verify, totalAnimals);
 
 
 
