@@ -27,7 +27,7 @@ export default function onlineAnimals(req, res){
                 const jsonOnlineAnimalData = JSON.stringify(onlineAnimalData);
                 onlineAnimalResponseData = onlineAnimalResponseData + jsonOnlineAnimalData;
             }
-            console.log(onlineAnimalResponseData);
+            
             res.status(200).end(onlineAnimalResponseData);
         }
         else{
