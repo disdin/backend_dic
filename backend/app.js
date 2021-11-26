@@ -25,8 +25,8 @@ import onlineAnimals from "./routeFunctions/onlineAnimals.js";
 app.post("/signup", signup);
 app.post("/signin", signin);
 app.get("/totalAnimals", totalAnimals);
-app.get("/allAnimalDetails",verify, allAnimalDetails);
-app.patch("/modifyAnimal",verify, modifyAnimal);
+app.get("/allAnimalDetails", allAnimalDetails);
+app.patch("/modifyAnimal", modifyAnimal);
 app.get("/onlineAnimals", onlineAnimals);
 
 const username=process.env.DB_USERNAME;

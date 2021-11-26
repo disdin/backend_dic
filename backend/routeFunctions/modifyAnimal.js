@@ -9,7 +9,7 @@ const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function modifyAnimals(req, res){
     var animalID = req.body.Animalid;
-    Animal.updateOne({_id:ObjectId(animalID)},{
+    Animal.updateOne({_id:animalID},{
         $set: {
             Name: req.body.Name,
             HealthCondition: req.body.Healthcondition,
