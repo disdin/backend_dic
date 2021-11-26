@@ -3,23 +3,11 @@ dotenv.config();
 import mongoose from "mongoose";  //importing mongoose
 import jwt from "jsonwebtoken";
 import schema from '../schema.js';
-import bcrypt from "bcryptjs"
 
 const User = mongoose.model("User", schema.userSchema);
 
-// schema.userSchema.pre("save",async function(next){
-//     // if(!this.isModified("Password")){
-//     //     next();
-//     // }
-//     console.log(this);
-//     const salt= await bcrypt.genSalt(10);
-//     this.Password=await bcrypt.hash(this.Password,salt);
-// })
-
-
-
 export default  function signup(req, res) {
-    User.findOne({Username:req.body.Username}, async function (err, foundUser) {
+    User.findOne({Username:req.body.Username}, function (err, foundUser) {
         if (!foundUser) {  //ensuring no duplicate entry or signup    
  
             var name = req.body.Name;
@@ -29,15 +17,7 @@ export default  function signup(req, res) {
             if (contact.length != 10) {
                 return res.status(401).send("<h1>Invaild Contact Number</h1><br>Contact number should be of 10 digits.");
             }
-            var accessToken = issueToken(req, res);
-            // var newPassword;
-            // await bcrypt.genSalt(10, async function (err, salt) {
-            //     await bcrypt.hash(password, salt, function (err, hash) {
-            //     //   console.log(hash);
-            //         newPassword=hash;  
-            //     });
-            //   });
-            
+            var accessToken = issueToken(req, res);      
 
             //creating new user document
             const newUser = new User({
@@ -81,6 +61,7 @@ export default  function signup(req, res) {
         else {
             res.status(200).send("<h2>Already registered. Please login.</h2>");
         }
+        console.log(err);
     })
 
 }
