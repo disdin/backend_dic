@@ -21,6 +21,9 @@ import  signup   from "./routeFunctions/signup.js";
 import  signin  from "./routeFunctions/signin.js";
 import modifyAnimal from "./routeFunctions/modifyAnimal.js";
 import onlineAnimals from "./routeFunctions/onlineAnimals.js";
+import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
+import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
+import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 
 app.post("/signup", signup);
 app.post("/signin", signin);
@@ -28,6 +31,9 @@ app.get("/totalAnimals", totalAnimals);
 app.get("/allAnimalDetails", allAnimalDetails);
 app.patch("/modifyAnimal", modifyAnimal);
 app.get("/onlineAnimals", onlineAnimals);
+app.get("/animalHealthDetails",animalHealthDetails);
+app.get("/particularAnimalDetail",particularAnimalDetail);
+app.get("/allAnimalsAvailable",allAnimalsAvailable);
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
