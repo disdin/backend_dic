@@ -8,13 +8,13 @@ import schema from '../schema.js';
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function onlineAnimals(req, res){
-    console.log(req);
+    // console.log(req);
     var i, count;
     Animal.count({Status: "online"},function (err, totalOnlineAnimals) {
         count = totalOnlineAnimals;
     });
 
-    var onlineAnimalResponseData;
+    var onlineAnimalResponseData={};
     Animal.find({Status: "online"}, function(err, foundOnlineAnimals){
         if(!err){
             for(i=0;i<count;i++){
