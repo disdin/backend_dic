@@ -14,7 +14,7 @@ export default function modifyAnimals(req, res){
             Name: req.body.Name,
             HealthCondition: req.body.Healthcondition,
             Status: req.body.Status,
-            otherInformation: req.body.Otherinformation
+            OtherInformation: req.body.Otherinformation
         }
     },
     function(err, result){

@@ -29,7 +29,7 @@ app.post("/signup", signup);
 app.post("/signin", signin);
 app.get("/totalAnimals", totalAnimals);
 app.get("/allAnimalDetails", allAnimalDetails);
-app.patch("/modifyAnimal", modifyAnimal);
+app.put("/modifyAnimal", modifyAnimal);
 app.get("/onlineAnimals", onlineAnimals);
 app.get("/animalHealthDetails",animalHealthDetails);
 app.get("/particularAnimalDetail",particularAnimalDetail);
