@@ -4,17 +4,18 @@ import schema from "../schema.js";
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function particularAnimalDetail(req, res) {
-  var foundAnimal
-    Animal.find({ _id: req.body.animalId }, function (err, foundAnimal) {
+  // var foundAnimal
+    Animal.findById(req.body.animalId, function (err, foundAnimal) {
     if (!err) {
+      // console.log(foundAnimal);
       const AnimalData = {
-        AnimalID: foundAnimal[0]._id,
-        Icon: foundAnimal[0].Icon,
-        Name: foundAnimal[0].Name,
-        HealthCondition: foundAnimal[0].HealthCondition,
-        Status: foundAnimal[0].Status,
-        Location: foundAnimal[0].Location,
-        OtherInformation: foundAnimal[0].OtherInformation,
+        AnimalID: foundAnimal._id,
+        Icon: foundAnimal.Icon,
+        Name: foundAnimal.Name,
+        HealthCondition: foundAnimal.HealthCondition,
+        Status: foundAnimal.Status,
+        Location: foundAnimal.Location,
+        OtherInformation: foundAnimal.OtherInformation,
       };
       //converting array element
       console.log(AnimalData);
