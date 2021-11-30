@@ -37,8 +37,10 @@ app.get("/allAnimalsAvailable",allAnimalsAvailable);
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
-Connection(username,password);
+const url=`mongodb+srv://${username}:${password}@smartforestappcluster.hx2d5.mongodb.net/forestApp_DB?retryWrites=true&w=majority`;
 
-app.listen(port,  ()=> {
+Connection(process.env.MONGODB_URI||url);
+
+app.listen(process.env.PORT||port,  ()=> {
   console.log(`>> Server started successfully at port ${port}`);
 });
