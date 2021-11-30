@@ -29,7 +29,7 @@ app.post("/signup", signup); // not working
 app.post("/signin", signin);
 app.get("/totalAnimals", totalAnimals);
 app.get("/allAnimalDetails", allAnimalDetails);
-app.patch("/modifyAnimal", modifyAnimal); //..
+app.patch("/modifyAnimal", modifyAnimal); 
 app.get("/onlineAnimals", onlineAnimals); //Not working
 app.get("/animalHealthDetails",animalHealthDetails);
 app.get("/particularAnimalDetail",particularAnimalDetail); // not working
