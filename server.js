@@ -25,14 +25,14 @@ import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 
-app.post("/signup", signup);
+app.post("/signup", signup); // not working
 app.post("/signin", signin);
 app.get("/totalAnimals", totalAnimals);
 app.get("/allAnimalDetails", allAnimalDetails);
-app.put("/modifyAnimal", modifyAnimal);
-app.get("/onlineAnimals", onlineAnimals);
+app.patch("/modifyAnimal", modifyAnimal); //..
+app.get("/onlineAnimals", onlineAnimals); //Not working
 app.get("/animalHealthDetails",animalHealthDetails);
-app.get("/particularAnimalDetail",particularAnimalDetail);
+app.get("/particularAnimalDetail",particularAnimalDetail); // not working
 app.get("/allAnimalsAvailable",allAnimalsAvailable);
 
 const username=process.env.DB_USERNAME;
