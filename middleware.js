@@ -6,7 +6,13 @@ import jwt from 'jsonwebtoken'; //jsonwebtoken module
 export default function verify (req, res, next) {
     
     //retrieving access token from header
-     let accessToken = req.headers.accesstoken;
+     let Token = req.headers.authorization;
+     var accessToken;
+     if (Token.startsWith("Bearer ")){
+        accessToken = Token.substring(7, Token.length);
+   } else {
+      res.status(403).send();
+   }
 
      if (!accessToken) {
          return res.status(403).send("<h1>Unauthorized Access!</h1><h2>Access token not found</h2>");
