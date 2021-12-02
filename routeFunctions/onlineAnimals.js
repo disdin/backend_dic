@@ -14,7 +14,7 @@ export default function onlineAnimals(req, res){
         count = totalOnlineAnimals;
     });
 
-    var onlineAnimalResponseData={};
+    var onlineAnimalResponseData, jsonOnlineAnimalData;
     Animal.find({Status: "online"}, function(err, foundOnlineAnimals){
         if(!err){
             for(i=0;i<count;i++){
@@ -24,7 +24,7 @@ export default function onlineAnimals(req, res){
                     Name: foundOnlineAnimals[i].Name
                 }
                 //converting array element
-                const jsonOnlineAnimalData = JSON.stringify(onlineAnimalData);
+                jsonOnlineAnimalData = JSON.stringify(onlineAnimalData);
                 onlineAnimalResponseData = onlineAnimalResponseData + jsonOnlineAnimalData;
             }
             
