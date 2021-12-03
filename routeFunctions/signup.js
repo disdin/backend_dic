@@ -8,12 +8,15 @@ const User = mongoose.model("User", schema.userSchema);
 
 export default  function signup(req, res) {
     User.findOne({Username:req.body.Username}, function (err, foundUser) {
+        if(err){
+            res.send(err);
+        }
         if (!foundUser) {  //ensuring no duplicate entry or signup    
  
             var name = req.body.Name;
             var contact = req.body.Contact;
             var userName = req.body.Username;
-            var password=req.body.Password;
+            var password = req.body.Password;
             if (contact.length != 10) {
                 return res.status(401).send("<h1>Invaild Contact Number</h1><br>Contact number should be of 10 digits.");
             }
@@ -54,14 +57,13 @@ export default  function signup(req, res) {
 
 
                 } else {
-                    res.status(401).send("<h2>Registration failed</h2>");
+                    res.status(401).send(err);
                 }
             });
         }
         else {
             res.status(200).send("<h2>Already registered. Please login.</h2>");
         }
-        console.log(err);
     })
 
 }

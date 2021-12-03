@@ -25,7 +25,7 @@ import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 
-app.post("/signup", signup); // working---rectified
+app.post("/signup", signup); // not working on heroku | working perfeectly locally
 app.post("/signin", signin);
 app.get("/totalAnimals", totalAnimals);
 app.get("/allAnimalDetails", allAnimalDetails);
