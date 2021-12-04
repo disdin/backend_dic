@@ -51,7 +51,7 @@ export default  function signup(req, res) {
                             res.end(jsonContent);
 
                         } else {
-                            res.status(404).send(foundUser);
+                            res.status(404).send("User not found. Please sign in again.");
                         }
                     })
 
@@ -62,7 +62,7 @@ export default  function signup(req, res) {
             });
         }
         else {
-            res.status(200).send("<h2>Already registered. Please login.</h2>   "+foundUser );
+            res.status(200).send(foundUser );
         }
     })
 
