@@ -27,14 +27,14 @@ import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 // import { userSignup } from "./routeFunctions/signUp2.js";
 
 app.post("/signup",signup); 
-app.post("/signin", signin);
-app.get("/totalAnimals", totalAnimals);
-app.get("/allAnimalDetails", allAnimalDetails);
-app.patch("/modifyAnimal", modifyAnimal); 
-app.get("/onlineAnimals", onlineAnimals);
-app.get("/animalHealthDetails",animalHealthDetails);
-app.get("/particularAnimalDetail",particularAnimalDetail); 
-app.get("/allAnimalsAvailable",allAnimalsAvailable);
+app.post("/signin",verify, signin);
+app.get("/totalAnimals",verify, totalAnimals);
+app.get("/allAnimalDetails",verify, allAnimalDetails);
+app.patch("/modifyAnimal",verify, modifyAnimal); 
+app.get("/onlineAnimals",verify, onlineAnimals);
+app.get("/animalHealthDetails",verify, animalHealthDetails);
+app.get("/particularAnimalDetail",verify, particularAnimalDetail); 
+app.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
