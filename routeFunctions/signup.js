@@ -7,7 +7,7 @@ import schema from '../schema.js';
 const User = mongoose.model("User", schema.userSchema);
 
 export default  function signup(req, res) {
-    User.findOne({Username:req.body.Username}, function (err, foundUser) {
+    User.find({Username:req.body.Username}, function (err, foundUser) {
         if(err){
             res.send(err);
         }
@@ -36,7 +36,7 @@ export default  function signup(req, res) {
             newUser.save(function (errors) {   //saving user data to database
                 if (!errors) {
                     //code to send data on successful registration
-                    User.findOne({ Username: req.body.Username },async function (err, foundUser) {
+                    User.find({ Username: req.body.Username },async function (err, foundUser) {
                         if (foundUser) {
                             assignedID = foundUser._id.toString();
                             const responseData = {
