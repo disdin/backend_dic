@@ -27,7 +27,7 @@ import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 // import { userSignup } from "./routeFunctions/signUp2.js";
 
 app.post("/signup",signup); 
-app.post("/signin",verify, signin);
+app.post("/signin",signin);
 app.get("/totalAnimals",verify, totalAnimals);
 app.get("/allAnimalDetails",verify, allAnimalDetails);
 app.patch("/modifyAnimal",verify, modifyAnimal); 
