@@ -15,6 +15,7 @@ export const userSignup= async(req,res)=>{
         await newUser.save();
 
         const DBuser=await User.findOne({Username:req.body.username});
+        console.log(DBuser);
         res.status(200).json(DBuser);
     }catch(err){
         console.log("Error: ",err.message);
