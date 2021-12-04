@@ -5,7 +5,7 @@ import schema from "../schema.js";
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function animalHealthDetails(req, res) {
-  var status = {};
+  var status = '';
   Animal.count({ HealthCondition: "Critical" }, (err, count1) => {
     if (!err) {
       status += JSON.stringify({ "Critical Animals": count1 });

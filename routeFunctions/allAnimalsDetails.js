@@ -15,7 +15,7 @@ export default  function allAnimalDetails(req, res) {
         count = totalAnimals;
     });
 
-    var animalResponseData;
+    var animalResponseData = '';
     //retrieving all data
     Animal.find({}, function (err, foundData) {
 
@@ -33,7 +33,6 @@ export default  function allAnimalDetails(req, res) {
                 //converting array element
                 const jsonAnimalData = JSON.stringify(animalData);
                 animalResponseData = animalResponseData + jsonAnimalData;
-
             }
 
             
