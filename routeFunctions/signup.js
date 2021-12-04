@@ -6,17 +6,14 @@ import schema from '../schema.js';
 
 const User = mongoose.model("User", schema.userSchema);
 
-export default  async function signup(req, res) {
-    await User.find({Username:req.body.Username}, function (err, foundUser) {
-        if(err){
-            res.send(err);
-        }
+export default  function signup(req, res) {
+    User.findOne({Username:req.body.Username}, function (err, foundUser) {
         if (!foundUser) {  //ensuring no duplicate entry or signup    
  
             var name = req.body.Name;
             var contact = req.body.Contact;
             var userName = req.body.Username;
-            var password = req.body.Password;
+            var password=req.body.Password;
             if (contact.length != 10) {
                 return res.status(401).send("<h1>Invaild Contact Number</h1><br>Contact number should be of 10 digits.");
             }
@@ -33,10 +30,10 @@ export default  async function signup(req, res) {
            
             var assignedID;
 
-            newUser.save(async function (errors) {   //saving user data to database
+            newUser.save(function (errors) {   //saving user data to database
                 if (!errors) {
                     //code to send data on successful registration
-                    await User.find({ Username: req.body.Username },async function (err, foundUser) {
+                    User.findOne({ Username: req.body.Username }, function (err, foundUser) {
                         if (foundUser) {
                             assignedID = foundUser._id.toString();
                             const responseData = {
@@ -57,13 +54,14 @@ export default  async function signup(req, res) {
 
 
                 } else {
-                    res.status(401).send(err);
+                    res.status(401).send("<h2>Registration failed</h2>");
                 }
             });
         }
         else {
-            res.status(200).send(foundUser );
+            res.status(200).send("<h2>Already registered. Please login.</h2>");
         }
+        console.log(err);
     })
 
 }
