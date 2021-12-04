@@ -14,7 +14,8 @@ export default function onlineAnimals(req, res){
         count = totalOnlineAnimals;
     });
 
-    var onlineAnimalResponseData, jsonOnlineAnimalData;
+    var onlineAnimalResponseData = '';
+    var jsonOnlineAnimalData = '';
     Animal.find({Status: "online"}, function(err, foundOnlineAnimals){
         if(!err){
             for(i=0;i<count;i++){

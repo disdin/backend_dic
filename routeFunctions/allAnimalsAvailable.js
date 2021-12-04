@@ -9,7 +9,7 @@ export default function allAnimalsAvailable(req, res){
         count = totalAnimals;
     });
 
-    var TotalAnimalResponseData=[];
+    var TotalAnimalResponseData='';
     Animal.find({}, function(err, foundAnimals){
         if(!err){
             // foundAnimals is array of all animal objects
