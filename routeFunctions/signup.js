@@ -33,9 +33,9 @@ export default  function signup(req, res) {
             newUser.save(function (errors) {   //saving user data to database
                 if (!errors) {
                     //code to send data on successful registration
-                    User.find({ Username: req.body.Username }, function (err, foundUser) {
-                        if (foundUser) {
-                            assignedID = foundUser._id.toString();
+                    User.find({ Username: req.body.Username }, function (err, foundUserB) {
+                        if (foundUserB) {
+                            assignedID = foundUserB._id.toString();
                             const responseData = {
                                 Userid: assignedID,
                                 Name: name,
