@@ -51,7 +51,7 @@ export default  function signup(req, res) {
                             res.end(jsonContent);
 
                         } else {
-                            res.status(404).send("User not found. Please sign in again.");
+                            res.status(404).send(foundUser);
                         }
                     })
 
