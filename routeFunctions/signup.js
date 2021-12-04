@@ -6,8 +6,8 @@ import schema from '../schema.js';
 
 const User = mongoose.model("User", schema.userSchema);
 
-export default  function signup(req, res) {
-    User.find({Username:req.body.Username}, function (err, foundUser) {
+export default  async function signup(req, res) {
+    await User.find({Username:req.body.Username}, function (err, foundUser) {
         if(err){
             res.send(err);
         }
@@ -33,10 +33,10 @@ export default  function signup(req, res) {
            
             var assignedID;
 
-            newUser.save(function (errors) {   //saving user data to database
+            newUser.save(async function (errors) {   //saving user data to database
                 if (!errors) {
                     //code to send data on successful registration
-                    User.find({ Username: req.body.Username },async function (err, foundUser) {
+                    await User.find({ Username: req.body.Username },async function (err, foundUser) {
                         if (foundUser) {
                             assignedID = foundUser._id.toString();
                             const responseData = {
