@@ -6,7 +6,7 @@ const User = mongoose.model("User", schema.userSchema);
 
 export const userSignup= async(req,res)=>{
     try{
-        const exists=await User.findOne({username:req.body.username});
+        const exists=await User.findOne({Username:req.body.username});
         if(exists){
             return res.status(401).json('Username already exists');
         }
@@ -14,7 +14,7 @@ export const userSignup= async(req,res)=>{
         const newUser=new User(user);
         await newUser.save();
 
-        const DBuser=await User.findOne({username:req.body.username});
+        const DBuser=await User.findOne({Username:req.body.username});
         res.status(200).json(DBuser);
     }catch(err){
         console.log("Error: ",err.message);
