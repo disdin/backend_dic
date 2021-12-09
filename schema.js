@@ -25,7 +25,15 @@ var animalSchema = new Schema({
     }
 });
 
+var locationSchema = new Schema({
+    animalID: String,
+    Latitude: Number,
+    Longitude: Number,
+    dateTime: Date
+});
+
 export default {
     animalSchema,
-    userSchema
+    userSchema,
+    locationSchema
 };

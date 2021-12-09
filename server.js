@@ -24,7 +24,24 @@ import onlineAnimals from "./routeFunctions/onlineAnimals.js";
 import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
-// import { userSignup } from "./routeFunctions/signUp2.js";
+import dummyData from "./dummyData.js";
+
+//creating dummy data
+//setInterval(dummyData, 1000);
+
+//call function to stop creating dummy data
+ //stopDummyData();
+
+
+ 
+//function to stop creating dummy data 
+function stopDummyData(){
+  const intervalObj = setInterval(() => {
+    dummyData
+  }, 1000);
+  clearInterval(intervalObj);
+};
+
 
 app.post("/signup",signup); 
 app.post("/signin",signin);
