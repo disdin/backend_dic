@@ -24,7 +24,8 @@ import onlineAnimals from "./routeFunctions/onlineAnimals.js";
 import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
-import dummyData from "./dummyData.js";
+// import dummyData from "./dummyData.js";
+import animalLiveLocation from "./routeFunctions/animalLiveLocation.js"
 
 //creating dummy data
 //setInterval(dummyData, 1000);
@@ -35,12 +36,12 @@ import dummyData from "./dummyData.js";
 
  
 //function to stop creating dummy data 
-function stopDummyData(){
-  const intervalObj = setInterval(() => {
-    dummyData
-  }, 1000);
-  clearInterval(intervalObj);
-};
+// function stopDummyData(){
+//   const intervalObj = setInterval(() => {
+//     dummyData
+//   }, 1000);
+//   clearInterval(intervalObj);
+// };
 
 
 app.post("/signup",signup); 
@@ -52,6 +53,8 @@ app.get("/onlineAnimals",verify, onlineAnimals);
 app.get("/animalHealthDetails",verify, animalHealthDetails);
 app.get("/particularAnimalDetail",verify, particularAnimalDetail); 
 app.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
+
+app.get("/animalLiveLocation",animalLiveLocation)
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
