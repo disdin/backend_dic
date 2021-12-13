@@ -53,7 +53,7 @@ app.get("/onlineAnimals",verify, onlineAnimals);
 app.get("/animalHealthDetails",verify, animalHealthDetails);
 app.get("/particularAnimalDetail",verify, particularAnimalDetail); 
 app.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
-app.patch("/modifyGeoFence",verify, modifyGeoFence);
+app.patch("/modifyGeoFence", modifyGeoFence);
 
 app.get("/animalLiveLocation",animalLiveLocation);
 
