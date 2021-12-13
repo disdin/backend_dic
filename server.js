@@ -24,7 +24,7 @@ import onlineAnimals from "./routeFunctions/onlineAnimals.js";
 import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
-// import dummyData from "./dummyData.js";
+import modifyGeoFence from "./routeFunctions/modifyGeoFence.js";
 import animalLiveLocation from "./routeFunctions/animalLiveLocation.js"
 
 //creating dummy data
@@ -53,8 +53,9 @@ app.get("/onlineAnimals",verify, onlineAnimals);
 app.get("/animalHealthDetails",verify, animalHealthDetails);
 app.get("/particularAnimalDetail",verify, particularAnimalDetail); 
 app.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
+app.patch("/modifyGeoFence",verify, modifyGeoFence);
 
-app.get("/animalLiveLocation",animalLiveLocation)
+app.get("/animalLiveLocation",animalLiveLocation);
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;

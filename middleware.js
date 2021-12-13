@@ -7,6 +7,10 @@ export default function verify (req, res, next) {
     
     //retrieving access token from header
      let Token = req.headers.authorization;
+     if (!Token) {
+        return res.status(403).send("<h1>Unauthorized Access!</h1><h2>Access token not found</h2>");
+    }
+
      var accessToken;
      if (Token.startsWith("Bearer ")){
         accessToken = Token.substring(7, Token.length);
@@ -14,9 +18,6 @@ export default function verify (req, res, next) {
       res.status(403).send();
    }
 
-     if (!accessToken) {
-         return res.status(403).send("<h1>Unauthorized Access!</h1><h2>Access token not found</h2>");
-     }
 
      let payload;
      //verifying access token 
