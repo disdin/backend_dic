@@ -14,25 +14,25 @@ var animalSchema = new Schema({
   Name: String,
   HealthCondition: String,
   Status: String,
-  Location: [{ Latitude: Number, Longitude: Number }],
+  Location: [{ Latitude: Number, Longitude: Number, date: Date }],
   OtherInformation: String,
   FenceDetail: {
     Center: Number,
     Radius: Number,
   },
-  AccessDuration:{
-      userId:String,
-      startTime:Date,
-      endTime:Date
-  }
+  AccessDuration: {
+    userId: String,
+    startTime: Date,
+    endTime: Date,
+  },
 });
 
-var locationSchema = new Schema({
-  animalID: String,
-  Latitude: Number,
-  Longitude: Number,
-  dateTime: Date,
-});
+// var locationSchema = new Schema({
+//   animalID: String,
+//   Latitude: Number,
+//   Longitude: Number,
+//   dateTime: Date,
+// });
 
 export default {
   animalSchema,
