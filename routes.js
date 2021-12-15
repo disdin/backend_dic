@@ -14,7 +14,6 @@ import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 import modifyGeoFence from "./routeFunctions/modifyGeoFence.js";
-import animalLiveLocation from "./routeFunctions/animalLiveLocation.js"
 
 const router=express.Router();
 
@@ -30,5 +29,4 @@ router.get("/particularAnimalDetail",verify, particularAnimalDetail);
 router.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
 router.patch("/modifyGeoFence",verify, modifyGeoFence);
 
-router.get("/animalLiveLocation",animalLiveLocation);
 export default router;
