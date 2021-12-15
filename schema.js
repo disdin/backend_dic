@@ -37,5 +37,5 @@ var animalSchema = new Schema({
 export default {
   animalSchema,
   userSchema,
-  locationSchema,
+  // locationSchema,
 };
