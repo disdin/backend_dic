@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import Connection from "./database/db.js";
 
 import router from "./routes.js";
-import saveAnimalLiveLocation from "./routeFunctions/saveAnimalLiveLocation"
+import saveAnimalLiveLocation from "./routeFunctions/saveAnimalLiveLocation.js"
 
 import { Server } from "socket.io";
 import http from "http";
