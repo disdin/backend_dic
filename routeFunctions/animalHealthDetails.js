@@ -23,9 +23,9 @@ export default function animalHealthDetails(req, res) {
   Animal.count({ HealthCondition: "Healthy" }, (err, count3) => {
     if (!err) {
       status += JSON.stringify({ "Healthy Animals": count3 });
-      res.end(status);
+      res.status(200).end(status);
     } else {
-      res.send(err);
+      res.status(400).send(err);
     }
   });
 }
