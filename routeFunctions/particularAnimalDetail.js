@@ -6,7 +6,7 @@ const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function particularAnimalDetail(req, res) {
   //var foundAnimal;
-    Animal.findById({ _id: req.headers.animalid}, function (err, foundAnimal) {
+    Animal.findById({ _id: req.body.animalid}, function (err, foundAnimal) {
     if (!err) {
       // console.log(foundAnimal);
       const AnimalData = {
