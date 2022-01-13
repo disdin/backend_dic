@@ -46,16 +46,16 @@ import animalLiveLocation from "./routeFunctions/animalLiveLocation.js"
 
 app.post("/signup",signup); 
 app.post("/signin",signin);
-app.get("/totalAnimals",verify, totalAnimals);
-app.get("/allAnimalDetails",verify, allAnimalDetails);
+app.post("/totalAnimals",verify, totalAnimals);
+app.post("/allAnimalDetails",verify, allAnimalDetails);
 app.patch("/modifyAnimal",verify, modifyAnimal); 
-app.get("/onlineAnimals",verify, onlineAnimals);
-app.get("/animalHealthDetails",verify, animalHealthDetails);
-app.get("/particularAnimalDetail",verify, particularAnimalDetail); 
-app.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
+app.post("/onlineAnimals",verify, onlineAnimals);
+app.post("/animalHealthDetails",verify, animalHealthDetails);
+app.post("/particularAnimalDetail",verify, particularAnimalDetail); 
+app.post("/allAnimalsAvailable",verify, allAnimalsAvailable);
 app.patch("/modifyGeoFence",verify, modifyGeoFence);
 
-app.get("/animalLiveLocation",animalLiveLocation);
+app.post("/animalLiveLocation",animalLiveLocation);
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
