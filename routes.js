@@ -1,13 +1,12 @@
 import express from "express";
 
 
-
 import totalAnimals from "./routeFunctions/totalAnimals.js"
 import  verify  from './middleware.js';
 import allAnimalDetails from "./routeFunctions/allAnimalsDetails.js";
 
-import  signup   from "./routeFunctions/signup.js";
-import  signin  from "./routeFunctions/signin.js";
+import signup from "./routeFunctions/signup.js";
+import signin from "./routeFunctions/signin.js";
 import modifyAnimal from "./routeFunctions/modifyAnimal.js";
 import onlineAnimals from "./routeFunctions/onlineAnimals.js";
 import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
@@ -30,4 +29,4 @@ router.post("/particularAnimalDetail",verify, particularAnimalDetail);
 router.post("/allAnimalsAvailable",verify, allAnimalsAvailable);
 router.patch("/modifyGeoFence",verify, modifyGeoFence);
 
-export default router;
+export {router};

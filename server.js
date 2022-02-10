@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import Connection from "./database/db.js";
 
-import router from "./routes.js";
+import {router} from "./routes.js";
 import saveAnimalLiveLocation from "./routeFunctions/saveAnimalLiveLocation.js"
 
 import { Server } from "socket.io";
@@ -12,17 +12,51 @@ dotenv.config();
 
 const app = express();
 
-let server = http.createServer(app);
+const server = http.createServer(app);
 let io = new Server(server);
-
-app.use("/", router);
 
 app.use(bodyParser.json());
 app.set("view engine", "ejs"); //ejs as templating engine
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
+app.use('/',router);
+
 
 const port = process.env.PORT || 3000;
+
+
+
+
+
+// import totalAnimals from "./routeFunctions/totalAnimals.js"
+// import  verify  from './middleware.js';
+// import allAnimalDetails from "./routeFunctions/allAnimalsDetails.js";
+
+// import  signup   from "./routeFunctions/signup.js";
+// import  signin  from "./routeFunctions/signin.js";
+// import modifyAnimal from "./routeFunctions/modifyAnimal.js";
+// import onlineAnimals from "./routeFunctions/onlineAnimals.js";
+// import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
+// import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
+// import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
+// import modifyGeoFence from "./routeFunctions/modifyGeoFence.js";
+
+// app.post("/signup",signup); 
+// app.post("/signin",signin);
+// app.post("/totalAnimals",verify, totalAnimals);
+// app.post("/allAnimalDetails",verify, allAnimalDetails);
+// app.patch("/modifyAnimal",verify, modifyAnimal); 
+// app.post("/onlineAnimals",verify, onlineAnimals);
+// app.post("/animalHealthDetails",verify, animalHealthDetails);
+// app.post("/particularAnimalDetail",verify, particularAnimalDetail); 
+// app.post("/allAnimalsAvailable",verify, allAnimalsAvailable);
+// app.patch("/modifyGeoFence",verify, modifyGeoFence);
+
+
+
+
+
+
 
 const username=process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;

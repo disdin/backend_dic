@@ -7,7 +7,9 @@ import schema from '../schema.js';
 const User = mongoose.model("User", schema.userSchema);
 
 export default  function signup(req, res) {
+    console.log(req.body);
     var email = req.body.Username;
+    
     let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
     if(regex.test(email) == false){
         return res.status(401).send("Invalid email/username");
