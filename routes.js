@@ -18,15 +18,16 @@ import modifyGeoFence from "./routeFunctions/modifyGeoFence.js";
 const router=express.Router();
 
 
+
 router.post("/signup",signup); 
 router.post("/signin",signin);
-router.get("/totalAnimals",verify, totalAnimals);
-router.get("/allAnimalDetails",verify, allAnimalDetails);
+router.post("/totalAnimals",verify, totalAnimals);
+router.post("/allAnimalDetails",verify, allAnimalDetails);
 router.patch("/modifyAnimal",verify, modifyAnimal); 
-router.get("/onlineAnimals",verify, onlineAnimals);
-router.get("/animalHealthDetails",verify, animalHealthDetails);
-router.get("/particularAnimalDetail",verify, particularAnimalDetail); 
-router.get("/allAnimalsAvailable",verify, allAnimalsAvailable);
+router.post("/onlineAnimals",verify, onlineAnimals);
+router.post("/animalHealthDetails",verify, animalHealthDetails);
+router.post("/particularAnimalDetail",verify, particularAnimalDetail); 
+router.post("/allAnimalsAvailable",verify, allAnimalsAvailable);
 router.patch("/modifyGeoFence",verify, modifyGeoFence);
 
 export default router;

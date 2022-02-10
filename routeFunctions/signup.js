@@ -64,7 +64,7 @@ export default  function signup(req, res) {
             });
         }
         else {
-            res.status(200).send("<h2>Already registered. Please login.</h2>");
+            res.status(401).send("<h2>Already registered. Please login.</h2>");
         }
         console.log(err);
     })

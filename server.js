@@ -24,10 +24,11 @@ app.use(express.static("public")); //static files in public directory
 
 const port = process.env.PORT || 3000;
 
-const username = process.env.DB_USERNAME;
-const password = process.env.DB_PASSWORD;
-const url = `mongodb+srv://${username}:${password}@smartforestappcluster.hx2d5.mongodb.net/forestApp_DB?retryWrites=true&w=majority`;
-Connection(process.env.MONGODB_URI || url);
+const username=process.env.DB_USERNAME;
+const password= process.env.DB_PASSWORD;
+const url=`mongodb+srv://${username}:${password}@smartforestappcluster.hx2d5.mongodb.net/forestApp_DB?retryWrites=true&w=majority`;
+
+Connection(process.env.MONGODB_URI||url);
 
 const generateNextLocation=(obj)=>{
   return {
@@ -52,6 +53,7 @@ io.on("connection", (socket) => {
     })
   });
 });
+
 
 server.listen(port, () => {
   console.log(`>> Server started successfully at port ${port}`);

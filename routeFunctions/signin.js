@@ -14,7 +14,7 @@ function signin (req, res) {
   User.findOne({ Username: Username }, async (err, user) => {
     if (user) {
       if (Password===user.Password) {
-        res.send({ 
+        res.status(200).send({ 
           // message: "Login Successfull",
 
           Userid:user._id,
@@ -24,10 +24,10 @@ function signin (req, res) {
           AccessToken:user.AccessToken
         });
       } else {
-        res.send({ message: "Password didn't match" });
+        res.status(401).send({ message: "Password didn't match" });
       }
     } else {
-      res.send({ message: "User not registered" });
+      res.status(401).send({ message: "User not registered" });
     }
   });
 };

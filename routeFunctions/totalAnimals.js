@@ -15,7 +15,7 @@ export default  function totalAnimals(req, res){
                 TotalAnimalsCount:totalAnimals
             };
             const jsonContent = JSON.stringify(totalAnimalsData);
-            res.end(jsonContent);
+            res.status(200).end(jsonContent);
         }
         else{
             res.status(400).send();
