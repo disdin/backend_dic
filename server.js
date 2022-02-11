@@ -23,7 +23,7 @@ const limiter = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '25mb'}));
 app.set("view engine", "ejs"); //ejs as templating engine
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory

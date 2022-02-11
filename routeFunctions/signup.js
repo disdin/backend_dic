@@ -1,6 +1,7 @@
 import mongoose from "mongoose"; //importing mongoose
 import jwt from "jsonwebtoken";
 import schema from "../schema.js";
+import validator from "email-validator";
 
 import bcrypt from "bcrypt";
 const saltRounds = 10;
