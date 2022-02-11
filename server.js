@@ -1,15 +1,22 @@
 import express from "express";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
+import dotenv from "dotenv"; // process.env
+dotenv.config();
+
 import Connection from "./database/db.js";
-import rateLimit from "express-rate-limit";
+import rateLimit from "express-rate-limit"; //DOS , DDOS prevention
 
-import {router} from "./routes.js";
+import {router} from "./routes.js";  // MVC approach
+
 import saveAnimalLiveLocation from "./routeFunctions/saveAnimalLiveLocation.js"
-
 import { Server } from "socket.io";
 import http from "http";
-dotenv.config();
+
+import helmet from "helmet"; // for safe headers
+
+import cluster from "cluster"; // in-built package    using the round robin approach for scheduling the processes
+import os from "os"; // in-built package
+const numCpu= os.cpus().length;
 
 const app = express();
 
@@ -17,17 +24,22 @@ const server = http.createServer(app);
 let io = new Server(server);
 
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	windowMs: 5 * 1000, // 15 minutes
+	max: 25, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	message:{
+    code:429,
+    message:'too many requests'
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 
-app.use(bodyParser.json({limit: '25mb'}));
+app.use(bodyParser.json({limit: '1mb'}));
 app.set("view engine", "ejs"); //ejs as templating engine
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
 app.use(limiter);
+app.use(helmet());
 app.use('/',router);
 
 const port = process.env.PORT || 3000;
@@ -63,6 +75,20 @@ io.on("connection", (socket) => {
 });
 
 
-server.listen(port, () => {
-  console.log(`>> Server started successfully at port ${port}`);
-});
+if(cluster.isMaster){
+  for(let i=0;i<numCpu;i++){
+    cluster.fork();
+  }
+  cluster.on('exit',(worker,code,signal)=>{
+    console.log(`worker ${worker.process.pid} died`);
+    cluster.fork();
+  })
+}
+else{
+  server.listen(port, () => {
+    console.log(`>> Server ${process.pid} started successfully at port ${port}`);
+  });
+}
+
+
+
