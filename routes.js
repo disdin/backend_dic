@@ -12,11 +12,18 @@ import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 import modifyGeoFence from "./routeFunctions/modifyGeoFence.js";
+import { originAgentCluster } from "helmet";
 
 const router=express.Router();
 
+import cluster from "cluster"; // in-built package    using the round robin approach for scheduling the processes
+import os from "os"; // in-built package
 
-
+router.get("/",(req,res)=>{
+    console.log(`ok... ${process.pid}`);
+    res.send(`ok... ${process.pid}`);
+    // cluster.worker.kill();
+})
 router.post("/signup",signup); 
 router.post("/signin",signin);
 router.post("/totalAnimals",verify, totalAnimals);
