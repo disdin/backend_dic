@@ -1,15 +1,16 @@
-import dotenv from 'dotenv';
-dotenv.config();
-import mongoose from "mongoose";  //importing mongoose
-import schema from '../schema.js';
 
-//connecting to database
+import mongoose from "mongoose";
+import schema from '../database/schema.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
-export default function modifyAnimals(req, res){
+export default function modifyAnimals(req, res) {
     var animalID = req.body.Animalid;
-    Animal.updateOne({_id:animalID},{
+    Animal.updateOne({ _id: animalID }, {
         $set: {
             FenceDetail: {
                 Center: req.body.Center,
@@ -17,14 +18,13 @@ export default function modifyAnimals(req, res){
             }
         }
     },
-    function(err, result){
-        if(err){
-            console.log("Error (modifyGeoFence): ", err);
-            res.status(400).send();
-        }
-        else{
-            res.status(200).send();
-            // console.log("Successfully Updated");
-        }
-    });
+        function (err, result) {
+            if (err) {
+                console.log("Error (modifyGeoFence): ", err);
+                res.status(400).send();
+            }
+            else {
+                res.status(200).send();
+            }
+        });
 }

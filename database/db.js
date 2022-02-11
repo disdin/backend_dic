@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+//Connecting to database
+
 const Connection= async(url)=>{
     try{
         await mongoose.connect(url);

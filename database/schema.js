@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+
+// Defining schemas 
+
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
@@ -27,15 +30,8 @@ var animalSchema = new Schema({
   },
 });
 
-// var locationSchema = new Schema({
-//   animalID: String,
-//   Latitude: Number,
-//   Longitude: Number,
-//   dateTime: Date,
-// });
 
 export default {
   animalSchema,
-  userSchema,
-  // locationSchema,
+  userSchema
 };

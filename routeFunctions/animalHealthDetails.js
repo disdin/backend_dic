@@ -1,7 +1,7 @@
-import mongoose from "mongoose"; //importing mongoose
-import schema from "../schema.js";
 
-//connecting to database
+import mongoose from "mongoose";
+import schema from "../database/schema.js";
+
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function animalHealthDetails(req, res) {

@@ -1,11 +1,9 @@
-import mongoose from "mongoose"; //importing mongoose
-import schema from "../schema.js";
-
+import mongoose from "mongoose";
+import schema from "../database/schema.js";
 
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
 export default function particularAnimalDetail(req, res) {
-  //var foundAnimal;
     Animal.findById({ _id: req.body.animalid}, function (err, foundAnimal) {
     if (!err) {
       const AnimalData = {

@@ -1,9 +1,9 @@
+// Importing required modules
 import dotenv from 'dotenv';
-dotenv.config();
-import mongoose from "mongoose";  //importing mongoose
-import schema from '../schema.js';
+import mongoose from "mongoose";
+import schema from '../database/schema.js';
 
-//connecting to database
+dotenv.config();
 
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
@@ -17,10 +17,10 @@ export default function particularAnimalHistoory(req, res) {
             locationArray = foundAnimal.Location;
 
 
-             var startIndex = locationArray.findIndex(locationArray.date == start);
-             //finding index of last location of a date
-             //first check month and then dates
-             var endIndex = locationArray.lastIndexOf(locationArray.date == end);
+            var startIndex = locationArray.findIndex(locationArray.date == start);
+            //finding index of last location of a date
+            //first check month and then dates
+            var endIndex = locationArray.lastIndexOf(locationArray.date == end);
 
             var requiredLocations = [];
             for (var i = startIndex; i <= endIndex; i++) {

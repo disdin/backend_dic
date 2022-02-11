@@ -1,9 +1,9 @@
+
+// importing required modules
 import express from "express";
-
 import totalAnimals from "./routeFunctions/totalAnimals.js"
-import  verify  from './middleware.js';
+import  verify  from './authentication.js';
 import allAnimalDetails from "./routeFunctions/allAnimalsDetails.js";
-
 import signup from "./routeFunctions/signup.js";
 import signin from "./routeFunctions/signin.js";
 import modifyAnimal from "./routeFunctions/modifyAnimal.js";
@@ -24,6 +24,8 @@ router.get("/",(req,res)=>{
     res.send(`ok... ${process.pid}`);
     // cluster.worker.kill();
 })
+
+// declaring routes
 router.post("/signup",signup); 
 router.post("/signin",signin);
 router.post("/totalAnimals",verify, totalAnimals);

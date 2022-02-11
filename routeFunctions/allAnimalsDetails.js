@@ -1,18 +1,19 @@
+//importing modules 
 import dotenv from 'dotenv';
-dotenv.config();
 import mongoose from "mongoose";  //importing mongoose
-import schema from '../schema.js';
+import schema from '../database/schema.js';
 
-//connecting to database
+dotenv.config();
 
 const Animal = mongoose.model("Animal", schema.animalSchema);
 
 //API: To get brief details of all animals in database
-export default  function allAnimalDetails(req, res) {
+
+export default function allAnimalDetails(req, res) {
     var i, count;
     //counting no of animals as per database record
     Animal.count(function (err, totalAnimals) {
-        if(err)console.log("Error (allAnimalsDetails): ",err);
+        if (err) console.log("Error (allAnimalsDetails): ", err);
         count = totalAnimals;
     });
 
@@ -36,7 +37,7 @@ export default  function allAnimalDetails(req, res) {
                 animalResponseData = animalResponseData + jsonAnimalData;
             }
 
-            
+
             res.status(200).end(animalResponseData);
 
         } else {
