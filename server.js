@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import Connection from "./database/db.js";
+import rateLimit from "express-rate-limit";
 
 import {router} from "./routes.js";
 import saveAnimalLiveLocation from "./routeFunctions/saveAnimalLiveLocation.js"
@@ -15,10 +16,18 @@ const app = express();
 const server = http.createServer(app);
 let io = new Server(server);
 
-app.use(bodyParser.json());
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
+app.use(bodyParser.json({limit: '25mb'}));
 app.set("view engine", "ejs"); //ejs as templating engine
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
+app.use(limiter);
 app.use('/',router);
 
 const port = process.env.PORT || 3000;
