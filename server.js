@@ -5,6 +5,7 @@ dotenv.config();
 
 import Connection from "./database/db.js";
 import rateLimit from "express-rate-limit"; //DOS , DDOS prevention
+import hsts from "hsts";
 
 import {router} from "./routes.js";  // MVC approach
 
@@ -49,12 +50,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
 app.use(limiter);
 app.use(helmet());
-app.use(function(req, res, next) {
-  if (req.secure) {
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
-  }
-  next();
-  })
+app.use(hsts({
+  maxAge: 31536000,
+  includeSubDomains: true,
+  preload: true
+  }));
 app.use('/',router);
 
 const port = process.env.PORT || 3000;
