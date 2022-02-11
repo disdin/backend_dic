@@ -11,9 +11,9 @@ export default function signup(req, res) {
   // console.log(req.body);
   var email = req.body.Username;
 
-  let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
-  if (regex.test(email) == false) {
-    return res.status(401).send("Invalid email/username");
+  let validationRes = validator.validate(email);
+  if(validationRes == false){
+      return res.status(401).send("Invalid email/username");
   }
   User.findOne({ Username: req.body.Username }, function (err, foundUser) {
     if (err) console.log("Error (signup): ", err);
