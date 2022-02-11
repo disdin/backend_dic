@@ -18,6 +18,7 @@ export default  function totalAnimals(req, res){
             res.status(200).end(jsonContent);
         }
         else{
+            console.log("Error (totalAnimals): ", err);
             res.status(400).send();
         }
     });

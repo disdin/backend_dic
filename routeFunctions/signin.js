@@ -1,31 +1,30 @@
 import mongoose from "mongoose";
-//import bcrypt from "bcryptjs";
-
+import bcrypt from "bcrypt";
 import schema from "../schema.js";
-
-// schema.userschema.methods.matchPassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
 
 const User = mongoose.model("User", schema.userSchema);
 
 function signin (req, res) {
   const { Username, Password } = req.body;
   User.findOne({ Username: Username }, async (err, user) => {
+    if(err)console.log("Error (signin): ", err);
     if (user) {
-      if (Password===user.Password) {
-        res.status(200).send({ 
-          // message: "Login Successfull",
+      bcrypt.compare(Password, user.Password, function(err, result) {
+        if(err)console.log("Error (signin bcrypt): ", err);
+        if(result==true){
+          res.status(200).send({ 
+            Userid:user._id,
+            Name:user.Name,
+            Contact:user.Contact,
+            Username:user.Username,
+            AccessToken:user.AccessToken
+          });
+        }
+        else{
+          res.status(401).send({ message: "Password didn't match" });
+        }
 
-          Userid:user._id,
-          Name:user.Name,
-          Contact:user.Contact,
-          Username:user.Username,
-          AccessToken:user.AccessToken
-        });
-      } else {
-        res.status(401).send({ message: "Password didn't match" });
-      }
+      });
     } else {
       res.status(401).send({ message: "User not registered" });
     }

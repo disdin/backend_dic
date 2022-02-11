@@ -6,6 +6,7 @@ const Animal = mongoose.model("Animal", schema.animalSchema);
 export default function allAnimalsAvailable(req, res){
     var count,i;
     Animal.count({},function (err, totalAnimals) {
+        if(err)console.log("Error (allAnimalsAvailable):",err);
         count = totalAnimals;
     });
 
@@ -27,7 +28,7 @@ export default function allAnimalsAvailable(req, res){
             res.status(200).end(TotalAnimalResponseData);
         }
         else{
-            res.status(400).send(err);
+            res.status(400).send();
         }
     });
 }
