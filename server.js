@@ -49,6 +49,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); //static files in public directory
 app.use(limiter);
 app.use(helmet());
+app.use(function(req, res, next) {
+  if (req.secure) {
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  }
+  next();
+  })
 app.use('/',router);
 
 const port = process.env.PORT || 3000;
