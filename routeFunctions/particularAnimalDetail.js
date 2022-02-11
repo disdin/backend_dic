@@ -8,7 +8,6 @@ export default function particularAnimalDetail(req, res) {
   //var foundAnimal;
     Animal.findById({ _id: req.body.animalid}, function (err, foundAnimal) {
     if (!err) {
-      // console.log(foundAnimal);
       const AnimalData = {
         AnimalID: foundAnimal._id,
         Icon: foundAnimal.Icon,
@@ -18,12 +17,11 @@ export default function particularAnimalDetail(req, res) {
         Location: foundAnimal.Location,
         OtherInformation: foundAnimal.OtherInformation,
       };
-      //converting array element
-      //console.log(AnimalData);
       const jsonAnimalData = JSON.stringify(AnimalData);
       res.status(200).send(jsonAnimalData);
     } else {
-      res.status(400).send(err);
+      console.log("Error (particularAnimalDetail): ", err);
+      res.status(400).send();
     }
   });
 }

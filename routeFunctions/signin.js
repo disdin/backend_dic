@@ -7,13 +7,12 @@ const User = mongoose.model("User", schema.userSchema);
 function signin (req, res) {
   const { Username, Password } = req.body;
   User.findOne({ Username: Username }, async (err, user) => {
+    if(err)console.log("Error (signin): ", err);
     if (user) {
       bcrypt.compare(Password, user.Password, function(err, result) {
-        // if res == true, password matched
-        // else wrong password
+        if(err)console.log("Error (signin bcrypt): ", err);
         if(result==true){
           res.status(200).send({ 
-            // message: "Login Successfull",
             Userid:user._id,
             Name:user.Name,
             Contact:user.Contact,

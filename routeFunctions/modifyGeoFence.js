@@ -19,11 +19,12 @@ export default function modifyAnimals(req, res){
     },
     function(err, result){
         if(err){
+            console.log("Error (modifyGeoFence): ", err);
             res.status(400).send();
         }
         else{
             res.status(200).send();
-            console.log("Successfully Updated");
+            // console.log("Successfully Updated");
         }
     });
 }

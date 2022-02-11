@@ -12,6 +12,7 @@ export default  function allAnimalDetails(req, res) {
     var i, count;
     //counting no of animals as per database record
     Animal.count(function (err, totalAnimals) {
+        if(err)console.log("Error (allAnimalsDetails): ",err);
         count = totalAnimals;
     });
 

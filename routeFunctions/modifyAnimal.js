@@ -19,6 +19,7 @@ export default function modifyAnimals(req, res){
     },
     function(err, result){
         if(err){
+            console.log("Error (modifyAnimal): ", err);
             res.status(400).send();
         }
         else{

@@ -1,6 +1,5 @@
 import express from "express";
 
-
 import totalAnimals from "./routeFunctions/totalAnimals.js"
 import  verify  from './middleware.js';
 import allAnimalDetails from "./routeFunctions/allAnimalsDetails.js";

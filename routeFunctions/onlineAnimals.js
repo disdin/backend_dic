@@ -11,6 +11,7 @@ export default function onlineAnimals(req, res){
     // console.log(req);
     var i, count;
     Animal.count({Status: "online"},function (err, totalOnlineAnimals) {
+        console.log("Error (onlineAnimals): ", err);
         count = totalOnlineAnimals;
     });
 
@@ -32,6 +33,7 @@ export default function onlineAnimals(req, res){
             res.status(200).end(onlineAnimalResponseData);
         }
         else{
+            console.log("Error (onlineAnimals): ", err);
             res.status(400).send();
         }
     });

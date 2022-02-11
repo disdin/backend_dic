@@ -18,6 +18,7 @@ export default function saveAnimalLiveLocation(id,toSaveLocationArray) {
         },
         function (err, result) {
           if (err) {
+            console.log("Error (saveAnimalLiveLocation): ", err);
             res.status(400).send(err);
           } else {
             res.status(200).send();
@@ -25,7 +26,6 @@ export default function saveAnimalLiveLocation(id,toSaveLocationArray) {
           }
         }
       );
-
       // const AnimalData = {
       //   Icon: foundAnimal[0].Icon,
       //   FenceDetail: foundAnimal[0].FenceDetail,
@@ -34,8 +34,8 @@ export default function saveAnimalLiveLocation(id,toSaveLocationArray) {
       // const jsonAnimalData = JSON.stringify(AnimalData);
       // res.status(200).send(jsonAnimalData);
     } else {
-      // res.status(400).send(err);
-      console.log(err);
+      console.log("Error (saveAnimalLiveLocation): ", err);
+      res.status(400).send();
     }
   });
 }
