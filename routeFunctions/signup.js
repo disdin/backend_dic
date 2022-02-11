@@ -3,15 +3,16 @@ dotenv.config();
 import mongoose from "mongoose";  //importing mongoose
 import jwt from "jsonwebtoken";
 import schema from '../schema.js';
+import validator from "email-validator";
 
 const User = mongoose.model("User", schema.userSchema);
 
 export default  function signup(req, res) {
-    console.log(req.body);
     var email = req.body.Username;
     
-    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-    if(regex.test(email) == false){
+    // let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+    let validationRes = validator.validate(email);
+    if(validationRes == false){
         return res.status(401).send("Invalid email/username");
     }
     User.findOne({Username:req.body.Username}, function (err, foundUser) {
