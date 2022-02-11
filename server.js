@@ -10,7 +10,13 @@ import {router} from "./routes.js";  // MVC approach
 
 import saveAnimalLiveLocation from "./routeFunctions/saveAnimalLiveLocation.js"
 import { Server } from "socket.io";
-import http from "http";
+import https from "https";
+import path from "path";
+import fs from "fs";
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import helmet from "helmet"; // for safe headers
 
@@ -20,7 +26,10 @@ const numCpu= os.cpus().length;
 
 const app = express();
 
-const server = http.createServer(app);
+const server = https.createServer({
+  key: fs.readFileSync(path.join(__dirname, 'sslCertificate', 'key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'sslCertificate', 'cert.pem'))
+}, app);
 let io = new Server(server);
 
 const limiter = rateLimit({
