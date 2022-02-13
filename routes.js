@@ -10,14 +10,14 @@ import modifyAnimal from "./routeFunctions/modifyAnimal.js";
 import onlineAnimals from "./routeFunctions/onlineAnimals.js";
 import animalHealthDetails from "./routeFunctions/animalHealthDetails.js";
 import particularAnimalDetail from "./routeFunctions/particularAnimalDetail.js";
+import particularAnimalHistory from "./routeFunctions/particularAnimalHistory.js";
 import allAnimalsAvailable from "./routeFunctions/allAnimalsAvailable.js";
 import modifyGeoFence from "./routeFunctions/modifyGeoFence.js";
-import { originAgentCluster } from "helmet";
+import JV from "./JSONValidator.js";
+
 
 const router=express.Router();
 
-import cluster from "cluster"; // in-built package    using the round robin approach for scheduling the processes
-import os from "os"; // in-built package
 
 router.get("/",(req,res)=>{
     console.log(`ok... ${process.pid}`);
@@ -26,15 +26,16 @@ router.get("/",(req,res)=>{
 })
 
 // declaring routes
-router.post("/signup",signup); 
-router.post("/signin",signin);
+router.post("/signup",JV.usersignupJV, signup);
+router.post("/signin",JV.usersigninJV, signin);
 router.post("/totalAnimals",verify, totalAnimals);
 router.post("/allAnimalDetails",verify, allAnimalDetails);
-router.patch("/modifyAnimal",verify, modifyAnimal); 
+router.patch("/modifyAnimal",JV.modifyAnimalJV, verify, modifyAnimal); 
 router.post("/onlineAnimals",verify, onlineAnimals);
 router.post("/animalHealthDetails",verify, animalHealthDetails);
-router.post("/particularAnimalDetail",verify, particularAnimalDetail); 
+router.post("/particularAnimalDetail",JV.particularAnimalDetailJV, verify, particularAnimalDetail); 
 router.post("/allAnimalsAvailable",verify, allAnimalsAvailable);
-router.patch("/modifyGeoFence",verify, modifyGeoFence);
+router.patch("/modifyGeoFence",JV.modifyGeofenceJV, verify, modifyGeoFence);
+router.post("/particularAnimalHistory",JV.particularAnimalHistoryJV, verify, particularAnimalHistory); 
 
 export {router};
